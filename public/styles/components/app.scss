@@ -1,0 +1,10 @@
+@import "foundation/components/grid";
+
+.mag-app {
+  @include grid-row;
+}
+
+.app-page {
+  @include grid-row($behavior: nest-collapse);
+  //@include grid-column($columns: 12, $collapse: true);
+}

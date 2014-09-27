@@ -1,0 +1,81 @@
+@import "foundation/functions";
+
+$type-baseline: floor(ms(1));
+
+//Foundation Overrides
+$h1-font-size: ms(2);
+$h2-font-size: ms(1);
+$h3-font-size: ms(1);
+$h4-font-size: ms(1);
+$h5-font-size: ms(1);
+$h6-font-size: ms(1);
+
+$font-sizes: $h1-font-size, $h2-font-size, $h3-font-size, $h4-font-size, $h5-font-size, $h6-font-size;
+
+$include-html-type-classes: false;
+
+@import "foundation/components/type";
+
+$font-header-family: "nimbus-sans", sans-serif;
+
+//"nimbus-sans", sans-serif;
+$font-body-family: "adelle", serif;
+$font-logo-family: $font-body-family;
+
+@function type-nearest-baseline($font-size) {
+  $rounded-size: floor($font-size);
+  $upper: ceil($rounded-size / $type-baseline);
+  $needed: $upper * $type-baseline - $font-size;
+  @if $needed < 0 {
+    @return 0;
+  }
+  @return $needed;
+}
+
+@mixin type-baseline($font-size, $margin-dir: bottom) {
+  margin-#{$margin-dir}: type-nearest-baseline($font-size);
+}
+
+@for $i from 1 through 6 {
+  h#{$i}, .h#{$i} {
+    $size: nth($font-sizes, $i);
+    margin: 0;
+    font-family: $font-header-family;
+    font-size: $size;
+    line-height: $size;
+    @include type-baseline($size);
+  }
+}
+
+body {
+  color: $color-gray-dark;
+  font-size: 100%;
+  font-family: $font-body-family;
+  line-height: rem-calc($type-baseline);
+  font-weight: 100;
+}
+
+.brand {
+  font-family: $font-logo-family;
+}
+
+p {
+  text-align: left;
+  font-weight: 100;
+  font-family: $font-body-family;
+  font-size: rem-calc(ms(0));
+  margin: 0 0 $type-baseline 0;
+  line-height: rem-calc($type-baseline);
+}
+
+a {
+  color: $color-link;
+  text-decoration: none;
+  transition: border 0.1s ease, color 0.8s ease;
+  border-bottom: 1px solid rgba($color-link, 0);
+}
+
+a:hover {
+  color: $color-link-dark;
+  border-bottom: 1px solid rgba($color-link-dark, 1);
+}

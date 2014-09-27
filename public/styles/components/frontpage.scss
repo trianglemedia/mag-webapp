@@ -1,0 +1,5 @@
+@import "foundation/components/grid";
+
+.frontpage {
+  @include grid-row($behavior: nest-collapse);
+}

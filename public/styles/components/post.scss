@@ -1,0 +1,107 @@
+@import "foundation/components/grid";
+
+.post-list {
+  @include grid-row($behavior: nest-collapse);
+}
+
+.post-list-item {
+  @include grid-column($columns: 12, $collapse: true);
+}
+
+.post-list-item-image {
+  @include grid-column($columns: 12, $collapse: true);
+  display: block;
+  height: rem-calc(ms(6));
+  position: relative;
+  @include type-baseline(ms(6), $margin-dir: bottom);
+  background-size: cover;
+  background-position: 50% 25%;
+  background-image: url("{{#image}}clementine.jpg{{/image}}");
+}
+
+.post-list-item-title {
+  display: inline-block;
+  margin: 0 rem-calc(ms(0));
+  font-weight: normal;
+}
+
+$post-authorbox-height: ms(3);
+
+.post-list-item-author {
+  @include grid-row($behavior: nest-collapse);
+  height: $post-authorbox-height;
+  line-height: $post-authorbox-height;
+  margin: 0 rem-calc(ms(0)) 0;
+  text-align: left;
+  border-bottom: 1px solid $color-accent-2;
+  border-top: 1px solid $color-accent-2;
+  @include type-baseline($post-authorbox-height, $margin-dir: bottom);
+}
+
+.post-list-item-author-name {
+  @include grid-column($columns: 6, $last-column: false, $collapse: null);
+  a {
+    margin: 0 0 0 ms(1) / 2;
+    font-family: $font-logo-family;
+  }
+}
+
+.post-list-item-author-time {
+  @include grid-column($columns: 4, $last-column: true, $collapse: null);
+  color: $color-text-light;
+}
+
+.post-list-item-author-avatar {
+  @include grid-column($columns: 2, $last-column: false, $collapse: null);
+  height: $post-authorbox-height;
+  span {
+    background-position: 50% 50%;
+    background-size: cover;
+    margin-top: ms(1) / 2;
+    width: ms(2);
+    height: ms(2);
+    display: block;
+    border-radius: $post-authorbox-height;
+  }
+}
+
+.post-list-item-body {
+  @include grid-column($columns: 12, $collapse: true);
+  text-align: center;
+  height: rem-calc(ms(5));
+  @include type-baseline(ms(5), $margin-dir: bottom);
+  p {
+    margin: 0 rem-calc(ms(0));
+    text-align: justify;
+  }
+}
+
+.post-label {
+  $padding: rem-calc(ms(0) / 2);
+  $width: rem-calc(ms(5));
+  &::before {
+    position: absolute;
+    z-index: -1;
+    width: $width + $padding * 2;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    content: "";
+    background: $color-accent-2;
+    color: $color-white;
+    opacity: .9;
+  }
+  color: $color-white;
+  z-index: 1;
+  font-size: ms(1);
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  width: $width;
+  padding: $padding;
+  top: rem-calc(-($type-baseline / 2)) + $padding;
+  margin-left: -($width / 2);
+  text-align: center;
+  display: block;
+}

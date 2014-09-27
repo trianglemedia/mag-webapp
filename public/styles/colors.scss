@@ -1,0 +1,21 @@
+$color-black: black;
+$color-white: white;
+$color-gray-dark: #292b2b;
+$color-gray: #aaaaaa;
+$color-silver: #eeeeee;
+
+$color-silver-light: #efefef;
+$color-blue: #66a4e4;
+$color-blue-light: #cce5ec;
+$color-red: #e597c8;
+$color-brown-light: #e6e3bb;
+
+$color-text: $color-gray-dark;
+$color-link: $color-blue;
+$color-accent-1: $color-red;
+$color-accent-2: $color-blue-light;
+$color-fill: $color-brown-light;
+
+$color-text-light: lighten($color-text, 20%);
+
+$color-link-dark: darken($color-link, 20%);

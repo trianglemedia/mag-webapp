@@ -1,0 +1,20 @@
+{
+  "name": "mag",
+  "version": "0.0.0",
+  "authors": [
+    "Conner Bryan <conner.bryan@amps.io>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.4.4",
+    "slick": "*",
+    "modular-scale": "~2.0.5"
+  }
+}
