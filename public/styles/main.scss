@@ -2,6 +2,13 @@
 
 @import "modular-scale/stylesheets/modular-scale";
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 $ms-base: 16px;
 $ms-ratio: $golden;
 
@@ -13,3 +20,4 @@ $ms-ratio: $golden;
 @import "components/navigation";
 @import "components/frontpage";
 @import "components/post";
+@import "components/postpage";

@@ -1,0 +1,20 @@
+/** @jsx React.DOM */
+module.exports = (function () {
+        var React = require('react/addons');
+        var App = require('./views/app');
+        var path = require('path');
+        var fs = require('fs');
+        var Mustache = require('mustache');
+
+        //TODO Path
+        var wrapper = fs.readFileSync(path.join(__dirname, '..', '.build', 'app', 'index.html'), 'utf8');
+        return {
+            __express: function (filePath, options, render) {
+                var Component = require(filePath);
+                var page = <Component view={options}/>;
+                var rendered = React.renderComponentToString(<App page={page}/>);
+                var wrapped = Mustache.render(wrapper, {view:rendered});
+                render(null, wrapped);
+        }
+    };
+}());

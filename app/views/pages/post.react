@@ -1,0 +1,18 @@
+/** @jsx React.DOM */
+(function() {
+"use strict";
+var React = require('react/addons');
+var Post = require('../post');
+
+var PostPage = React.createClass({
+    render: function() {
+        var post = this.props.view.post;
+        return <div className="post-page">
+           <Post title={post.title} image={post.image} author={post.author}/>
+        </div>;
+    }
+});
+
+module.exports = PostPage;
+
+}());

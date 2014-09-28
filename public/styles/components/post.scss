@@ -105,3 +105,33 @@ $post-authorbox-height: ms(3);
   text-align: center;
   display: block;
 }
+
+
+.post {
+  @include grid-column($columns: 12, $collapse: true);
+}
+
+.post-title {
+  text-align: center;
+  margin-bottom: ms(1);
+}
+
+.post-hero-image {
+  @include grid-column($columns: 12, $collapse: true);
+  div {
+      @include grid-column($columns: 12, $collapse: true);
+  display: block;
+  height: rem-calc(ms(6));
+  position: relative;
+  @include type-baseline(ms(6), $margin-dir: bottom);
+  background-size: cover;
+  background-position: 50% 25%;
+  }
+}
+
+.post-body {
+ @include grid-column($columns: 12, $collapse: false); 
+ p { 
+  
+}
+}

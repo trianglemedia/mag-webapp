@@ -1,0 +1,26 @@
+/** @jsx React.DOM */
+(function() {
+"use strict";
+var React = require('react/addons');
+var Post = React.createClass({
+render: function() {
+var heroStyle = {
+backgroundImage: "url('/images/"+this.props.image+"')"
+};
+return <div className="post">
+    <div className="post-hero-image">
+        <div style={heroStyle}></div>
+    </div>
+    <h2 className="post-title">{this.props.title}</h2>
+    <div className="post-body">
+        <p>Cable knit denim shorts cashmere crop midi sneaker clutch cuff knitwear. Ecru seam plaited strong eyebrows Saint Laurent metallic So-Cal dungaree. Neutral navy blue leather tee flats skirt. Holographic Givenchy white denim texture relaxed powder blue vintage 90s.</p>
+        <p>Cara D. A.P.C. rings skinny jeans chunky sole statement chignon. Cami minimal playsuit oversized sweatshirt print sports luxe ribbed. Street style bandeau skort braid white shirt pastel Céline washed out. Indigo silhouette loafer spearmint Prada Saffiano tortoise-shell sunglasses vintage Levi maxi Furla.</p>
+        <p>Floral envelope clutch knot ponytail oxford slip dress black Jil Sander Vasari. Round sunglasses slipper collarless Lanvin Maison Martin Margiela. Gold collar luxe boots razor pleats Paris Acne dress sandal. Chambray center part leggings dove grey bomber leather tote Hermès grunge cotton la marinière.</p>
+        <p>Boots washed out Furla cami Saint Laurent Céline. Paris cotton gold collar Lanvin So-Cal. Street style minimal tucked t-shirt playsuit leggings white shirt clutch sneaker slip dress Acne. Cable knit center part statement A.P.C. bandeau dove grey bomber Jil Sander Vasari round sunglasses chunky sole.</p>
+        <p>Rings envelope clutch black braid vintage shoe powder blue. Cuff spearmint floral flats texture. Navy blue print chambray holographic seam. Cashmere dress indigo oversized sweatshirt loafer la marinière white skirt 90s ribbed.</p>
+    </div>
+</div>;
+}
+});
+module.exports = Post;
+}());

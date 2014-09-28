@@ -12,7 +12,7 @@ var path = require('path');
 var wiredep = require('wiredep').stream;
 var reload = require('browser-sync').reload;
 
-gulp.task('app', ['app:scripts', 'app:index'], function () {});
+gulp.task('app', [/*'app:scripts',*/ 'app:index'], function () {});
 
 var createBundle = function () {
 
@@ -74,7 +74,7 @@ gulp.task('app:index', function () {
                 ' -->',
             addRootSlash: true
         }))
-        .pipe(gulp.dest(config.dest("")))
+        .pipe(gulp.dest(config.dest("app")))
         .pipe(reload({
             stream: true
         }));
@@ -83,7 +83,7 @@ gulp.task('app:index', function () {
 gulp.task('app:watch', function () {
     config.watch = true;
     gulp.start("app:index");
-    gulp.start("app:scripts:watch");
+  //  gulp.start("app:scripts:watch");
 });
 
 gulp.task('app:scripts:watch', function () {

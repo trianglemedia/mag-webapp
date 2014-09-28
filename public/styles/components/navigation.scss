@@ -1,7 +1,7 @@
 @import "foundation/components/grid";
 
 .navigation {
-  @include grid-column($columns: 12, $collapse: true);
+  @include grid-column($columns: 12, $collapse: false);
   background: #ffffff;
   nav {}
   nav, .brand {

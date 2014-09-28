@@ -1,0 +1,17 @@
+/** @jsx React.DOM */
+(function() {
+"use strict";
+var React = require('react/addons');
+
+
+var AuthorPage = React.createClass({
+    render: function() {
+        return <div className="author-page">
+           Herlo
+        </div>;
+    }
+});
+
+module.exports = AuthorPage;
+
+}());

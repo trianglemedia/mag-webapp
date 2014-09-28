@@ -43,7 +43,7 @@ if (config.watch) {
 var replacePipe = (function () {
     var Mustache = require('mustache');
     return lazypipe().pipe($.tap, function (file, t) {
-        if(!file.contents) {
+        if (!file.contents) {
             return;
         }
         var contents = file.contents.toString();
@@ -65,6 +65,9 @@ var noopPlumberPipe = (function () {
         errorHandler: onErrorNoop
     });
 }());
+
+
+
 
 module.exports = {
     plumber: plumberPipe,

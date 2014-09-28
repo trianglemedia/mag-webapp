@@ -1,0 +1,25 @@
+/** @jsx React.DOM */
+(function() {
+"use strict";
+var React = require('react/addons');
+
+var NavigationSection = require('./navigationsection.react');
+
+
+var App = React.createClass({
+
+    componentDidMount: function () {
+        },
+    render: function() {
+        return <div className="mag-app">
+        <NavigationSection/>
+        <div className="app-page">
+        {this.props.page}
+        </div>
+        </div>;
+    }
+});
+
+module.exports = App;
+
+}());

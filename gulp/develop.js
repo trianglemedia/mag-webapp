@@ -2,40 +2,51 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
+  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license']
 });
 var config = require('./config');
 
 var browserSync = require('browser-sync');
 var httpProxy = require('http-proxy');
-
+var url = require('url');
+var proxy = require('proxy-middleware');
 /* This configuration allow you to configure browser sync to proxy your backend */
 var proxyTarget = 'http://server/context/'; // The location of your backend
 var proxyApiPrefix = 'api'; // The element in the URL which differentiate between API request and static file request
 
-var proxy = httpProxy.createProxyServer({
-  target: proxyTarget
-});
+var path = require('path');
 
-function proxyMiddleware(req, res, next) {
-  if (req.url.indexOf(proxyApiPrefix) !== -1) {
-    proxy.web(req, res);
-  } else {
-    next();
-  }
-}
+var reload = require('browser-sync').reload;
 
 function browserSyncInit(baseDir, files, browser) {
-  browser = browser === undefined ? 'default' : browser;
+
+  $.nodemon({
+    script: path.join(__dirname, '..', 'app', 'app.js'),
+    ext: 'js html react',
+    watch: [
+      path.join(__dirname, '..', 'app')
+    ],
+    env: {
+      'NODE_ENV': 'development'
+    },
+    ignore: ['./build/**'],
+  }).on('restart', function () {
+    reload();
+  });
+  var browser = browser === undefined ? 'default' : browser;
+
+  var proxyOptions = url.parse('http://localhost:5000/');
+  proxyOptions.route = '/';
 
   browserSync.instance = browserSync.init(files, {
-    startPath: '/index.html',
-    server: {
-      baseDir: baseDir,
-      middleware: proxyMiddleware
-    },
+    startPath: '/',
+    //server: {
+    //      baseDir: baseDir,
+    // middleware: [proxy(proxyOptions)]
+    //  },
     browser: browser,
-    injectChanges: false
+    injectChanges: false,
+    proxy: "localhost:5000"
   });
 
 }

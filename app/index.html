@@ -14,12 +14,16 @@
         <!-- inject:app:css -->
         <!-- endinject -->
     </head>
-    <body>
+    <body class="grid">
         <div id="app">
+            {{=<% %>=}}
+            {{&view}}
+            <%={{ }}=%>
         </div>
         <!-- bower:js -->
         <!-- endbower -->
         <!-- inject:app:js -->
         <!-- endinject -->
+        <script  src="//localhost:3000/browser-sync/browser-sync-client.1.5.1.js"></script>
     </body>
 </html>
