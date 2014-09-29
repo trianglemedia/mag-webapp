@@ -5,11 +5,12 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
-$ms-base: 16px;
+$ms-base: 22px;
 $ms-ratio: $golden;
 
 @import "colors";

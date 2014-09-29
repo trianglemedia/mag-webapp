@@ -1,9 +1,17 @@
-var router = require('express').Router();
+var Router = require('express').Router;
+
+var router = Router();
 router.get('/', function (req, res, next) {
     res.render('frontpage');
 });
 
-var postRouter = require('express').Router();
+var publishRouter = Router();
+publishRouter.get('/write', function(req, res, next) {
+    res.render('pages/write', {});
+});
+router.use('/publish', publishRouter);
+
+var postRouter = Router();
 postRouter.get('/:slug', function (req, res, next) {
     res.render('pages/post', {
         post: {
@@ -20,7 +28,7 @@ postRouter.get('/:slug', function (req, res, next) {
 
 router.use('/post', postRouter);
 
-var authorRouter = require('express').Router();
+var authorRouter = Router();
 authorRouter.get('/:name', function (req, res, next) {
     res.render('pages/author');
 });

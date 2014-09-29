@@ -8,7 +8,7 @@ var NavigationSection = React.createClass({
     render: function() {
         return <div className="contain-to-grid sticky navigation">
             <nav className="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
-                <h1 className="brand">triangle</h1>
+                <h1 className="brand"><a href="/">triangle</a></h1>
             </nav>
         </div>;
     }

@@ -1,0 +1,16 @@
+/** @jsx React.DOM */
+(function() {
+"use strict";
+var React = require('react/addons');
+var Editor = require('../editor');
+var WritePage = React.createClass({
+    render: function() {
+       return <div className="write-page">
+            <Editor/>
+        </div>;
+    }
+});
+
+module.exports = WritePage;
+
+}());

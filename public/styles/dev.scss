@@ -1,5 +1,7 @@
 $include-html-classes: false;
 
+@import "main";
+
 body.grid {
   position: relative;
 }
@@ -16,11 +18,10 @@ body.grid:after {
   right: 0;
   bottom: 0;
   left: 0;
-  background: url(http://basehold.it/image.php?height=25.885) repeat top left;
+  // background: url(http://basehold.it/image.php?height=21.875) repeat top left;
+  //background: url(http://basehold.it/image.php?height=35) repeat top left;
 }
 
 body.grid:active:after {
   display: none;
 }
-
-@import "main";

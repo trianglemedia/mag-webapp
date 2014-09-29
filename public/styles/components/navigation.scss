@@ -7,8 +7,18 @@
   nav, .brand {
     background: #ffffff;
     //TODO
-    height: rem-calc(ms(3) + type-nearest-baseline(ms(3)));
+    height: rem-calc(ms(3)) + type-nearest-baseline(ms(3));
     line-height: rem-calc(ms(3));
     margin: 0;
+  }
+  .brand {
+    a {
+      color: $color-accent-1;
+      border: 0;
+      &:hover {
+        color: $color-accent-1-light;
+        border: 0;
+      }
+    }
   }
 }

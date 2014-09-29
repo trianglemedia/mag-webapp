@@ -12,12 +12,12 @@ var path = require('path');
 var wiredep = require('wiredep').stream;
 var reload = require('browser-sync').reload;
 
-gulp.task('app', [/*'app:scripts',*/ 'app:index'], function () {});
+gulp.task('app', ['app:scripts', 'app:index'], function () {});
 
 var createBundle = function () {
 
     var bundle = browserify({
-        entries: path.join(config.tmp("app"), "app.js"),
+        entries: path.join(config.tmp("app"), "client.js"),
         basedir: config.tmp("app"),
         transform: ['reactify', 'es6ify'],
         insertGlobals: true,
@@ -29,12 +29,12 @@ var createBundle = function () {
 };
 
 gulp.task('app:scripts', ['app:scripts:preprocess'], function () {
-    return createBundle().bundle().pipe(source("app.js"))
+    return createBundle().bundle().pipe(source("client.js"))
         .pipe(gulp.dest(config.dest("app")));
 });
 
 gulp.task('app:scripts:preprocess', function () {
-    return gulp.src("app/**/*.js").pipe(pipes.preprocess("app")());
+    return gulp.src("app/**/*.{js,react}").pipe(pipes.preprocess("app")());
 });
 
 gulp.task('app:index', function () {
@@ -83,7 +83,7 @@ gulp.task('app:index', function () {
 gulp.task('app:watch', function () {
     config.watch = true;
     gulp.start("app:index");
-  //  gulp.start("app:scripts:watch");
+    gulp.start("app:scripts:watch");
 });
 
 gulp.task('app:scripts:watch', function () {
@@ -96,7 +96,7 @@ gulp.task('app:scripts:watch', function () {
         return bundler.bundle()
             .on('error', $.util.log.bind($.util,
                 'Browserify Error'))
-            .pipe(source('app.js'))
+            .pipe(source('client.js'))
             .pipe(gulp.dest(config.dest("app")))
             .pipe(reload({
                 stream: true

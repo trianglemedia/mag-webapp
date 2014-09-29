@@ -10,10 +10,18 @@ module.exports = (function () {
         var wrapper = fs.readFileSync(path.join(__dirname, '..', '.build', 'app', 'index.html'), 'utf8');
         return {
             __express: function (filePath, options, render) {
+                delete options["settings"];
                 var Component = require(filePath);
                 var page = <Component view={options}/>;
                 var rendered = React.renderComponentToString(<App page={page}/>);
-                var wrapped = Mustache.render(wrapper, {view:rendered});
+                var initializerScript = 'var container = document.getElementById("app");';
+                initializerScript += 'var component = components.' + Component.displayName + '('+JSON.stringify({view: options})+');';
+                initializerScript += 'var app = components.App({page: component});';
+                initializerScript += 'React.renderComponent(app, container);';
+                var initializer = '<script>' + initializerScript + '</script>';
+
+
+                var wrapped = Mustache.render(wrapper, {view:rendered + initializer});
                 render(null, wrapped);
         }
     };

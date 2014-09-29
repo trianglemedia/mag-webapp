@@ -6,14 +6,19 @@
 
 .post-list-item {
   @include grid-column($columns: 12, $collapse: true);
+  @media #{$medium-up} {
+    @include grid-column($columns: 6, $collapse: false);
+  }
 }
 
 .post-list-item-image {
   @include grid-column($columns: 12, $collapse: true);
   display: block;
-  height: rem-calc(ms(6));
+  height: rem-calc(ms(6)) + type-nearest-baseline(ms(6));
+  //  padding: 0 0 type-nearest-baseline(ms(6)) / 2 0;
+  margin: 0 0 type-nearest-baseline(ms(6)) / 2 0;
   position: relative;
-  @include type-baseline(ms(6), $margin-dir: bottom);
+  //@include type-baseline(ms(6), $margin-dir: bottom);
   background-size: cover;
   background-position: 50% 25%;
   background-image: url("{{#image}}clementine.jpg{{/image}}");
@@ -21,8 +26,19 @@
 
 .post-list-item-title {
   display: inline-block;
-  margin: 0 rem-calc(ms(0));
+  //text-align: left;
+  //margin: 0 rem-calc(ms(0));
   font-weight: normal;
+  position: relative;
+  a {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: rem-calc(ms($h2-font-size));
+  }
+  @media #{$medium-up} {
+    height: ms(3);
+    line-height: ms(3);
+  }
 }
 
 $post-authorbox-height: ms(3);
@@ -68,7 +84,10 @@ $post-authorbox-height: ms(3);
 .post-list-item-body {
   @include grid-column($columns: 12, $collapse: true);
   text-align: center;
-  height: rem-calc(ms(5));
+  height: rem-calc(ms(6));
+  @media #{$medium-up} {
+    height: rem-calc(ms(6));
+  }
   @include type-baseline(ms(5), $margin-dir: bottom);
   p {
     margin: 0 rem-calc(ms(0));
@@ -100,12 +119,11 @@ $post-authorbox-height: ms(3);
   right: 50%;
   width: $width;
   padding: $padding;
-  top: rem-calc(-($type-baseline / 2)) + $padding;
+  top: -($type-baseline / 2) + $padding;
   margin-left: -($width / 2);
   text-align: center;
   display: block;
 }
-
 
 .post {
   @include grid-column($columns: 12, $collapse: true);
@@ -113,25 +131,50 @@ $post-authorbox-height: ms(3);
 
 .post-title {
   text-align: center;
-  margin-bottom: ms(1);
+  margin-bottom: rem-calc(ms(1));
 }
 
 .post-hero-image {
   @include grid-column($columns: 12, $collapse: true);
   div {
-      @include grid-column($columns: 12, $collapse: true);
-  display: block;
-  height: rem-calc(ms(6));
-  position: relative;
+    @include grid-column($columns: 12, $collapse: true);
+    display: block;
+    height: rem-calc(ms(6));
+    position: relative;
+    background-size: cover;
+    background-position: 50% 50%;
+    @media #{$medium-up} {
+      height: rem-calc(ms(7));
+    }
+  }
   @include type-baseline(ms(6), $margin-dir: bottom);
-  background-size: cover;
-  background-position: 50% 25%;
+  @media #{$medium-up} {
+    @include type-baseline(ms(7), $margin-dir: bottom);
   }
 }
 
 .post-body {
- @include grid-column($columns: 12, $collapse: false); 
- p { 
-  
+  @include grid-column($columns: 12, $collapse: false);
+  @media #{$medium} {
+    //@include grid-column($columns: 7, $collapse: false);
+  }
+  @media #{$large-up} {
+    @include grid-column($columns: 8, $collapse: false);
+  }
+  p {}
 }
+
+.post-sidebar {
+  display: none;
+  @media #{$medium} {
+    // @include grid-column($columns: 5, $collapse: false);
+  }
+  @media #{$large-up} {
+    @include grid-column($columns: 4, $collapse: false);
+    display: block;
+  }
+}
+
+.post-footer {
+  @include grid-column($columns: 12, $collapse: false);
 }

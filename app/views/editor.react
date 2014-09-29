@@ -1,0 +1,19 @@
+/** @jsx React.DOM */
+(function() {
+"use strict";
+
+var React = require('react/addons');
+var Post = React.createClass({
+    render: function() {
+    
+    return <div className="editor">
+    <div className="editor-document">
+
+    </div>
+    </div>;
+    }
+});
+
+module.exports = Post;
+
+}());

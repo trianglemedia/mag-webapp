@@ -21,7 +21,7 @@ var reload = require('browser-sync').reload;
 function browserSyncInit(baseDir, files, browser) {
 
   $.nodemon({
-    script: path.join(__dirname, '..', 'app', 'app.js'),
+    script: path.join(__dirname, '..', 'app', 'server.js'),
     ext: 'js html react',
     watch: [
       path.join(__dirname, '..', 'app')
@@ -29,8 +29,10 @@ function browserSyncInit(baseDir, files, browser) {
     env: {
       'NODE_ENV': 'development'
     },
-    ignore: ['./build/**'],
-  }).on('restart', function () {
+    ignore: ['./build/**', 'node_modules/**',
+      'bower_components/**'
+    ],
+  }).on('restart', function() {
     reload();
   });
   var browser = browser === undefined ? 'default' : browser;
@@ -51,7 +53,7 @@ function browserSyncInit(baseDir, files, browser) {
 
 }
 
-gulp.task('dev', function () {
+gulp.task('dev', function() {
   config.watch = true;
   gulp.start('app:watch');
   gulp.start('public:watch');
@@ -61,14 +63,14 @@ gulp.task('dev', function () {
   ], []);
 });
 
-gulp.task('serve:dist', ['build'], function () {
+gulp.task('serve:dist', ['build'], function() {
   browserSyncInit('dist');
 });
 
-gulp.task('serve:e2e', function () {
+gulp.task('serve:e2e', function() {
   browserSyncInit(['app', '.tmp'], null, []);
 });
 
-gulp.task('serve:e2e-dist', ['watch'], function () {
+gulp.task('serve:e2e-dist', ['watch'], function() {
   browserSyncInit('dist', null, []);
 });

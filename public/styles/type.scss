@@ -1,14 +1,14 @@
 @import "foundation/functions";
 
-$type-baseline: floor(ms(1));
+$type-baseline: rem-calc(floor(ms(1)));
 
 //Foundation Overrides
-$h1-font-size: ms(2);
-$h2-font-size: ms(1);
-$h3-font-size: ms(1);
-$h4-font-size: ms(1);
-$h5-font-size: ms(1);
-$h6-font-size: ms(1);
+$h1-font-size: 2;
+$h2-font-size: 1;
+$h3-font-size: 1;
+$h4-font-size: 1;
+$h5-font-size: 1;
+$h6-font-size: 1;
 
 $font-sizes: $h1-font-size, $h2-font-size, $h3-font-size, $h4-font-size, $h5-font-size, $h6-font-size;
 
@@ -23,11 +23,11 @@ $font-body-family: "adelle", serif;
 $font-logo-family: $font-body-family;
 
 @function type-nearest-baseline($font-size) {
-  $rounded-size: floor($font-size);
+  $rounded-size: floor(rem-calc($font-size));
   $upper: ceil($rounded-size / $type-baseline);
-  $needed: $upper * $type-baseline - $font-size;
+  $needed: $upper * $type-baseline - rem-calc($font-size);
   @if $needed < 0 {
-    @return 0;
+    @return 1 - $needed;
   }
   @return $needed;
 }
@@ -38,22 +38,28 @@ $font-logo-family: $font-body-family;
 
 @for $i from 1 through 6 {
   h#{$i}, .h#{$i} {
-    $size: nth($font-sizes, $i);
+    $size-value: nth($font-sizes, $i);
+    $size: rem-calc(ms($size-value));
     margin: 0;
+    @include type-baseline(ms($size-value));
     font-family: $font-header-family;
     font-size: $size;
     line-height: $size;
-    @include type-baseline($size);
   }
 }
 
-body {
+html {
+  font-size: 62.5%;
   color: $color-gray-dark;
-  font-size: 100%;
   font-family: $font-body-family;
-  line-height: rem-calc($type-baseline);
+  line-height: $type-baseline;
   font-weight: 100;
+  @media #{$medium-up} {
+    font-size: 100%;
+  }
 }
+
+body {}
 
 .brand {
   font-family: $font-logo-family;
@@ -65,7 +71,16 @@ p {
   font-family: $font-body-family;
   font-size: rem-calc(ms(0));
   margin: 0 0 $type-baseline 0;
-  line-height: rem-calc($type-baseline);
+  line-height: $type-baseline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  a {
+    border: 0;
+    &:hover {
+      border: 0;
+    }
+  }
 }
 
 a {

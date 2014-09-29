@@ -19,3 +19,6 @@ $color-fill: $color-brown-light;
 $color-text-light: lighten($color-text, 20%);
 
 $color-link-dark: darken($color-link, 20%);
+
+$color-accent-1-dark: darken($color-accent-1, 20%);
+$color-accent-1-light: lighten($color-accent-1, 10%);
